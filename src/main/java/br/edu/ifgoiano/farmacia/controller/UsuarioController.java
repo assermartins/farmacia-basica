@@ -80,7 +80,4 @@ public class UsuarioController {
 		result.use(Results.xml()).from(lista).serialize();
 	}
 	
-	
-	
-	
 }

@@ -51,5 +51,16 @@ public class UsuarioDao {
 	public void remove(Usuario usuario){
 		em.remove(busca(usuario));
 	}
+	
+	/*public void removeAll(List<Integer> posicao){
+		Usuario usu = new Usuario();
+		List<Usuario> usuarios;
+		
+		for (Integer integer : posicao) {
+			integer.get
+		}*/
+		
+
+	//}
 
 }

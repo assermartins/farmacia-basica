@@ -51,7 +51,7 @@ public class LoginController {
 		}
 		usuarioLogado.setUsuario(usuario);
 		System.out.println("Estou logado? -> "+usuarioLogado.getUsuario().getUsuario());
-		result.redirectTo(FarmaciaController.class).dashboard();
+		result.redirectTo(UsuarioController.class).lista();
 		
 	}
 	

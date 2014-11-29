@@ -37,7 +37,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${usuarioList}" var="usuario" varStatus="s">
+			<c:forEach items="${usuarioList}" var="usuario">
 				<tr>
 					<td><input type="checkbox" value="${usuario.pkUsuario}"
 						id="box${usuario.pkUsuario}"></td>
@@ -51,7 +51,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<button id="BtnEscolhidos" type="button" value="<c:url value='/usuario/remove?usuario.pkUsuario=${usuario.pkUsuario }'/>">Escolhidos</button>
+	<button id="BtnEscolhidos" type="button" value="">Escolhidos</button>
 
 </body>
 </html>

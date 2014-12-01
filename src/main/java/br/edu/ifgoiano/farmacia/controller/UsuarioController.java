@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.hibernate.Session;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -60,11 +62,17 @@ public class UsuarioController {
 		
 	}
 	
-	
 	@Get
 	public void remove(Usuario usuario){
 		usuarioDao.remove(usuario);
 		result.redirectTo(this).lista();
+	}
+	
+	@Post 
+	public void apagaOsSafadosTodos(List<Usuario> usuarios) {
+		for (Usuario usuario : usuarios) {
+			this.remove(usuario);
+		}
 	}
 	
 	
@@ -78,6 +86,7 @@ public class UsuarioController {
 	public void listaXML(){
 		List<Usuario> lista = usuarioDao.lista();
 		result.use(Results.xml()).from(lista).serialize();
+		
 	}
 	
 }

@@ -1,90 +1,81 @@
 package br.edu.ifgoiano.farmacia.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the entradas_medicamentos database table.
  * 
  */
 @Entity
-@Table(name="entradas_medicamentos")
-@NamedQuery(name="EntradasMedicamento.findAll", query="SELECT e FROM EntradasMedicamento e")
+@Table(name = "entradas_medicamentos")
+@NamedQuery(name = "EntradasMedicamento.findAll", query = "SELECT e FROM EntradasMedicamento e")
 public class EntradasMedicamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="pk_entrada")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_entrada")
+	@SequenceGenerator(name = "pk_entrada", allocationSize = 1, sequenceName = "seq_pk_entrada")
+	@Column(name = "pk_entrada")
 	private Integer pkEntrada;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="data_entrada")
 	private Date dataEntrada;
 
-	private Integer nf;
+	private String numeroNF;
+	@OneToMany
+	private List<Lote> lotes;
 
-	@Column(name="pk_fornecedor")
-	private Integer pkFornecedor;
+	EntradasMedicamento() {
 
-	private Integer quantidade;
+	}
 
-	//bi-directional many-to-one association to Medicamento
-	@ManyToOne
-	@JoinColumn(name="pk_medicamento")
-	private Medicamento medicamento;
+	private EntradasMedicamento(String numeroNF) {
+		this.numeroNF = numeroNF;
+		this.dataEntrada = Calendar.getInstance().getTime();
+	}
 
-	public EntradasMedicamento() {
+	/**
+	 * fabrica de entradas
+	 * 
+	 * @return this
+	 */
+	public static EntradasMedicamento newEntradasMedicamentos(String numeroNF) {
+		return new EntradasMedicamento(numeroNF);
 	}
 
 	public Integer getPkEntrada() {
-		return this.pkEntrada;
-	}
-
-	public void setPkEntrada(Integer pkEntrada) {
-		this.pkEntrada = pkEntrada;
+		return pkEntrada;
 	}
 
 	public Date getDataEntrada() {
-		return this.dataEntrada;
+		return dataEntrada;
 	}
 
-	public void setDataEntrada(Date dataEntrada) {
-		this.dataEntrada = dataEntrada;
+	public List<Lote> getLotes() {
+		return lotes;
 	}
 
-	public Integer getNf() {
-		return this.nf;
+	public String getNumeroNF() {
+		return numeroNF;
 	}
 
-	public void setNf(Integer nf) {
-		this.nf = nf;
-	}
-
-	public Integer getPkFornecedor() {
-		return this.pkFornecedor;
-	}
-
-	public void setPkFornecedor(Integer pkFornecedor) {
-		this.pkFornecedor = pkFornecedor;
-	}
-
-	public Integer getQuantidade() {
-		return this.quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Medicamento getMedicamento() {
-		return this.medicamento;
-	}
-
-	public void setMedicamento(Medicamento medicamento) {
-		this.medicamento = medicamento;
+	public void setNumeroNF(String numeroNF) {
+		this.numeroNF = numeroNF;
 	}
 
 }

@@ -1,191 +1,125 @@
 package br.edu.ifgoiano.farmacia.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the medicamentos database table.
  * 
  */
 @Entity
-@Table(name="medicamentos")
-@NamedQuery(name="Medicamento.findAll", query="SELECT m FROM Medicamento m")
+@Table(name = "medicamentos")
+@NamedQuery(name = "Medicamento.findAll", query = "SELECT m FROM Medicamento m")
 public class Medicamento implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="pk_medicamento")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_medicamento")
+	@SequenceGenerator(allocationSize = 1, sequenceName = "seq_pk_medicamento", name = "pk_medicamento")
+	@Column(name = "pk_medicamento")
 	private Integer pkMedicamento;
-
-	@Column(name="cod_barras")
-	private String codBarras;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="data_cadastro")
-	private Date dataCadastro;
 
 	private String descricao;
 
-	@Column(name="estoque_minimo")
-	private Integer estoqueMinimo;
+	private String nomeMedicamento;
 
-	@Column(name="tot_estoque")
-	private Integer totEstoque;
-
-	private String unidade;
-
-	//bi-directional many-to-one association to EntradasMedicamento
-	@OneToMany(mappedBy="medicamento")
-	private List<EntradasMedicamento> entradasMedicamentos;
-
-	//bi-directional many-to-one association to Lote
-	@OneToMany(mappedBy="medicamento")
+	@OneToMany(mappedBy = "medicamento", cascade = CascadeType.ALL)
 	private List<Lote> lotes;
 
-	//bi-directional many-to-one association to Grupo
-	@ManyToOne
-	@JoinColumn(name="pk_grupo")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pk_grupo", referencedColumnName = "pk_grupo")
 	private Grupo grupo;
 
-	//bi-directional many-to-one association to SaidasMedicamento
-	@OneToMany(mappedBy="medicamento")
-	private List<SaidasMedicamento> saidasMedicamentos;
+	Medicamento() {
+	}
 
-	public Medicamento() {
+	public Medicamento(String descricao, String nomeMedicamento, Grupo grupo) {
+		this.descricao = descricao;
+		this.nomeMedicamento = nomeMedicamento;
+		this.grupo = grupo;
+
 	}
 
 	public Integer getPkMedicamento() {
-		return this.pkMedicamento;
+		return pkMedicamento;
 	}
 
 	public void setPkMedicamento(Integer pkMedicamento) {
 		this.pkMedicamento = pkMedicamento;
 	}
 
-	public String getCodBarras() {
-		return this.codBarras;
-	}
-
-	public void setCodBarras(String codBarras) {
-		this.codBarras = codBarras;
-	}
-
-	public Date getDataCadastro() {
-		return this.dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
 	public String getDescricao() {
-		return this.descricao;
+		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Integer getEstoqueMinimo() {
-		return this.estoqueMinimo;
-	}
-
-	public void setEstoqueMinimo(Integer estoqueMinimo) {
-		this.estoqueMinimo = estoqueMinimo;
-	}
-
-	public Integer getTotEstoque() {
-		return this.totEstoque;
-	}
-
-	public void setTotEstoque(Integer totEstoque) {
-		this.totEstoque = totEstoque;
-	}
-
-	public String getUnidade() {
-		return this.unidade;
-	}
-
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
-	}
-
-	public List<EntradasMedicamento> getEntradasMedicamentos() {
-		return this.entradasMedicamentos;
-	}
-
-	public void setEntradasMedicamentos(List<EntradasMedicamento> entradasMedicamentos) {
-		this.entradasMedicamentos = entradasMedicamentos;
-	}
-
-	public EntradasMedicamento addEntradasMedicamento(EntradasMedicamento entradasMedicamento) {
-		getEntradasMedicamentos().add(entradasMedicamento);
-		entradasMedicamento.setMedicamento(this);
-
-		return entradasMedicamento;
-	}
-
-	public EntradasMedicamento removeEntradasMedicamento(EntradasMedicamento entradasMedicamento) {
-		getEntradasMedicamentos().remove(entradasMedicamento);
-		entradasMedicamento.setMedicamento(null);
-
-		return entradasMedicamento;
+	public String getNomeMedicamento() {
+		return nomeMedicamento;
 	}
 
 	public List<Lote> getLotes() {
-		return this.lotes;
-	}
-
-	public void setLotes(List<Lote> lotes) {
-		this.lotes = lotes;
-	}
-
-	public Lote addLote(Lote lote) {
-		getLotes().add(lote);
-		lote.setMedicamento(this);
-
-		return lote;
-	}
-
-	public Lote removeLote(Lote lote) {
-		getLotes().remove(lote);
-		lote.setMedicamento(null);
-
-		return lote;
+		return lotes;
 	}
 
 	public Grupo getGrupo() {
-		return this.grupo;
+		return grupo;
 	}
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
 
-	public List<SaidasMedicamento> getSaidasMedicamentos() {
-		return this.saidasMedicamentos;
+	@Override
+	public String toString() {
+		return "Medicamento [pkMedicamento=" + pkMedicamento + ", descricao="
+				+ descricao + ", nomeMedicamento=" + nomeMedicamento
+				+ ", grupo=" + grupo + "]";
 	}
 
-	public void setSaidasMedicamentos(List<SaidasMedicamento> saidasMedicamentos) {
-		this.saidasMedicamentos = saidasMedicamentos;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result
+				+ ((pkMedicamento == null) ? 0 : pkMedicamento.hashCode());
+		return result;
 	}
 
-	public SaidasMedicamento addSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
-		getSaidasMedicamentos().add(saidasMedicamento);
-		saidasMedicamento.setMedicamento(this);
-
-		return saidasMedicamento;
-	}
-
-	public SaidasMedicamento removeSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
-		getSaidasMedicamentos().remove(saidasMedicamento);
-		saidasMedicamento.setMedicamento(null);
-
-		return saidasMedicamento;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medicamento other = (Medicamento) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (pkMedicamento == null) {
+			if (other.pkMedicamento != null)
+				return false;
+		} else if (!pkMedicamento.equals(other.pkMedicamento))
+			return false;
+		return true;
 	}
 
 }

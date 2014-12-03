@@ -42,8 +42,6 @@ public class Medicamento implements Serializable {
 	private Grupo grupo;
 
 
-	}
-
 	public Integer getPkMedicamento() {
 		return pkMedicamento;
 	}
@@ -56,7 +54,6 @@ public class Medicamento implements Serializable {
 		return descricao;
 	}
 
-	}
 
 	public List<Lote> getLotes() {
 		return lotes;
@@ -70,7 +67,5 @@ public class Medicamento implements Serializable {
 		this.grupo = grupo;
 	}
 
-
-	}
 
 }

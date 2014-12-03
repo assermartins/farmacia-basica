@@ -8,7 +8,7 @@
 	<persistence-unit name="default">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.edu.ifgoiano.farmacia.model.Cidade</class>
-		<class>br.edu.ifgoiano.farmacia.model.EntradaMedicamento</class>
+		<class>br.edu.ifgoiano.farmacia.model.EntradasMedicamento</class>
 		<class>br.edu.ifgoiano.farmacia.model.Estado</class>
 		<class>br.edu.ifgoiano.farmacia.model.Grupo</class>
 		<class>br.edu.ifgoiano.farmacia.model.Lote</class>

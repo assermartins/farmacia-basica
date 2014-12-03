@@ -19,12 +19,25 @@
 			<artifactId>vraptor</artifactId>
 			<version>4.0.0.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
 
+<<<<<<< HEAD
 		<dependency>
 		<groupId>br.com.caelum.vraptor</groupId>
 		<artifactId>vraptor-jpa</artifactId>
 		<version>4.0.0-RC2</version>
 		</dependency>
+=======
+		<!-- <dependency> -->
+		<!-- <groupId>br.com.caelum.vraptor</groupId> -->
+		<!-- <artifactId>vraptor-jpa</artifactId> -->
+		<!-- <version>4.0.0-RC2</version> -->
+		<!-- </dependency> -->
+>>>>>>> 06a72be3698be11b3895c148034133925d7dbd40
 
 		<!-- <dependency> -->
 		<!-- <groupId>br.com.caelum.vraptor</groupId> -->

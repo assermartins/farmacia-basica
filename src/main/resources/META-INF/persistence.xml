@@ -18,6 +18,8 @@
 		<class>br.edu.ifgoiano.farmacia.model.Psf</class>
 		<class>br.edu.ifgoiano.farmacia.model.SaidaMedicamento</class>
 		<class>br.edu.ifgoiano.farmacia.model.Usuario</class>
+		<shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
+		<validation-mode>AUTO</validation-mode>
 
 <!-- 		<class>br.edu.ifgoiano.farmacia.model.Conta</class> -->
 <!-- 		<class>br.edu.ifgoiano.farmacia.model.Movimentacao</class> -->

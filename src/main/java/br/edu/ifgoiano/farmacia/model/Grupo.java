@@ -1,70 +1,100 @@
 package br.edu.ifgoiano.farmacia.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the grupo database table.
  * 
  */
 @Entity
-@NamedQuery(name="Grupo.findAll", query="SELECT g FROM Grupo g")
 public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="pk_grupo")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pk_grupo")
+	@SequenceGenerator(name = "pk_grupo", allocationSize = 1, sequenceName = "seq_pk_grupo")
+	@Column(name = "pk_grupo")
 	private Integer pkGrupo;
 
-	@Column(name="nome_grupo")
+	private String descricaoGrupo;
+
 	private String nomeGrupo;
 
-	//bi-directional many-to-one association to Medicamento
-	@OneToMany(mappedBy="grupo")
+	private String nomeSubGrupo;
+
+	@OneToMany(mappedBy = "grupo")
 	private List<Medicamento> medicamentos;
 
-	public Grupo() {
+	Grupo() {
+	}
+
+	public Grupo(String descricaoGrupo, String nomeGrupo, String nomeSubGrupo) {
+		this.descricaoGrupo = descricaoGrupo;
+		this.nomeGrupo = nomeGrupo;
+		this.nomeSubGrupo = nomeSubGrupo;
 	}
 
 	public Integer getPkGrupo() {
-		return this.pkGrupo;
+		return pkGrupo;
 	}
 
-	public void setPkGrupo(Integer pkGrupo) {
-		this.pkGrupo = pkGrupo;
+	public String getDescricaoGrupo() {
+		return descricaoGrupo;
 	}
 
 	public String getNomeGrupo() {
-		return this.nomeGrupo;
+		return nomeGrupo;
 	}
 
-	public void setNomeGrupo(String nomeGrupo) {
-		this.nomeGrupo = nomeGrupo;
+	public String getNomeSubGrupo() {
+		return nomeSubGrupo;
 	}
 
 	public List<Medicamento> getMedicamentos() {
-		return this.medicamentos;
+		return medicamentos;
 	}
 
-	public void setMedicamentos(List<Medicamento> medicamentos) {
-		this.medicamentos = medicamentos;
+	@Override
+	public String toString() {
+		return "Grupo [pkGrupo=" + pkGrupo + ", descricaoGrupo="
+				+ descricaoGrupo + ", nomeGrupo=" + nomeGrupo
+				+ ", nomeSubGrupo=" + nomeSubGrupo + "]";
 	}
 
-	public Medicamento addMedicamento(Medicamento medicamento) {
-		getMedicamentos().add(medicamento);
-		medicamento.setGrupo(this);
-
-		return medicamento;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((pkGrupo == null) ? 0 : pkGrupo.hashCode());
+		return result;
 	}
 
-	public Medicamento removeMedicamento(Medicamento medicamento) {
-		getMedicamentos().remove(medicamento);
-		medicamento.setGrupo(null);
-
-		return medicamento;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Grupo other = (Grupo) obj;
+		if (pkGrupo == null) {
+			if (other.pkGrupo != null)
+				return false;
+		} else if (!pkGrupo.equals(other.pkGrupo))
+			return false;
+		return true;
 	}
 
 }

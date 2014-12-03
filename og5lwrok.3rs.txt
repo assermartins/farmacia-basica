@@ -1,0 +1,52 @@
+﻿Merge branch 'master' of https://github.com/Pompeu/farmacia-basica
+
+Conflicts:
+	pom.xml
+	src/main/java/br/edu/ifgoiano/farmacia/model/EntradaMedicamento.java
+	src/main/java/br/edu/ifgoiano/farmacia/model/Grupo.java
+	src/main/java/br/edu/ifgoiano/farmacia/model/Lote.java
+	src/main/java/br/edu/ifgoiano/farmacia/model/Medicamento.java
+	src/main/java/br/edu/ifgoiano/farmacia/test/TestaConsulta.java
+	src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/model/EntradasMedicamento.class
+	src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/model/Grupo.class
+	src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/model/Lote.class
+	src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/model/Medicamento.class
+	src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/test/TestaConsulta.class
+	target/m2e-wtp/web-resources/META-INF/maven/br.com.ifgoiano/farmacia-basica/pom.properties
+	target/m2e-wtp/web-resources/META-INF/maven/br.com.ifgoiano/farmacia-basica/pom.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .classpath
+#	modified:   pom.xml
+#	new file:   src/main/java/br/edu/ifgoiano/farmacia/dao/LoteDAO.java
+#	new file:   src/main/java/br/edu/ifgoiano/farmacia/dao/LoteImpl.java
+#	modified:   src/main/java/br/edu/ifgoiano/farmacia/model/EntradaMedicamento.java
+#	modified:   src/main/java/br/edu/ifgoiano/farmacia/model/Grupo.java
+#	modified:   src/main/java/br/edu/ifgoiano/farmacia/model/Lote.java
+#	modified:   src/main/java/br/edu/ifgoiano/farmacia/model/Medicamento.java
+#	new file:   src/main/java/br/edu/ifgoiano/farmacia/model/Unidade.java
+#	modified:   src/main/java/br/edu/ifgoiano/farmacia/test/TestaConsulta.java
+#	new file:   src/main/java/br/edu/ifgoiano/farmacia/test/TesteLoteDAO.java
+#	modified:   src/main/resources/META-INF/persistence.xml
+#	modified:   src/main/webapp/WEB-INF/classes/META-INF/persistence.xml
+#	new file:   src/main/webapp/WEB-INF/classes/br/edu/ifgoiano/farmacia/model/EntradasMedicamento.class
+#	deleted:    target/classes/br/edu/ifgoiano/farmacia/controller/IndexController.class
+#	deleted:    target/classes/br/edu/ifgoiano/farmacia/util/JPAUtil.class
+#	modified:   target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/br.com.ifgoiano/farmacia-basica/pom.properties
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/br.com.ifgoiano/farmacia-basica/pom.xml
+#
+

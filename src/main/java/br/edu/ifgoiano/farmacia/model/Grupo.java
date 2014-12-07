@@ -14,10 +14,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * The persistent class for the grupo database table.
+ * The persistent class for the grupos database table.
  * 
  */
 @Entity
+@Table(name = "grupos")
+@NamedQuery(name = "Grupo.findAll", query = "SELECT g FROM Grupo g")
 public class Grupo implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -6,10 +6,11 @@ import java.util.List;
 
 
 /**
- * The persistent class for the cidade database table.
+ * The persistent class for the cidades database table.
  * 
  */
 @Entity
+@Table(name="cidades")
 @NamedQuery(name="Cidade.findAll", query="SELECT c FROM Cidade c")
 public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;

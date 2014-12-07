@@ -15,10 +15,10 @@ import br.edu.ifgoiano.farmacia.model.Usuario;
 @Controller
 public class LoginController {
 	
-	private UsuarioDao dao;
-	private Validator validator;
-	private Result result;
-	private UsuarioLogado usuarioLogado;
+	private final UsuarioDao dao;
+	private final Validator validator;
+	private final Result result;
+	private final UsuarioLogado usuarioLogado;
 
 	@Inject
 	public LoginController(UsuarioDao dao, Validator validator, Result result,

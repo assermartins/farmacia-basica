@@ -17,10 +17,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * The persistent class for the medicamento database table.
+ * The persistent class for the medicamentos database table.
  * 
  */
 @Entity
+@Table(name = "medicamentos")
+@NamedQuery(name = "Medicamento.findAll", query = "SELECT m FROM Medicamento m")
 public class Medicamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,12 +37,22 @@ public class Medicamento implements Serializable {
 
 	private String nomeMedicamento;
 
+	@OneToMany(mappedBy = "medicamento", cascade = CascadeType.ALL)
 	private List<Lote> lotes;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pk_grupo", referencedColumnName = "pk_grupo")
 	private Grupo grupo;
 
+	Medicamento() {
+	}
+
+	public Medicamento(String descricao, String nomeMedicamento, Grupo grupo) {
+		this.descricao = descricao;
+		this.nomeMedicamento = nomeMedicamento;
+		this.grupo = grupo;
+
+	}
 
 	public Integer getPkMedicamento() {
 		return pkMedicamento;
@@ -54,6 +66,9 @@ public class Medicamento implements Serializable {
 		return descricao;
 	}
 
+	public String getNomeMedicamento() {
+		return nomeMedicamento;
+	}
 
 	public List<Lote> getLotes() {
 		return lotes;
@@ -67,5 +82,44 @@ public class Medicamento implements Serializable {
 		this.grupo = grupo;
 	}
 
+	@Override
+	public String toString() {
+		return "Medicamento [pkMedicamento=" + pkMedicamento + ", descricao="
+				+ descricao + ", nomeMedicamento=" + nomeMedicamento
+				+ ", grupo=" + grupo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result
+				+ ((pkMedicamento == null) ? 0 : pkMedicamento.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Medicamento other = (Medicamento) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (pkMedicamento == null) {
+			if (other.pkMedicamento != null)
+				return false;
+		} else if (!pkMedicamento.equals(other.pkMedicamento))
+			return false;
+		return true;
+	}
 
 }

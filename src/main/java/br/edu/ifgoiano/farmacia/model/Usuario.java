@@ -5,12 +5,12 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the usuario database table.
+ * The persistent class for the usuarios database table.
  * 
  */
 @Entity
+@Table(name="usuarios")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-@SequenceGenerator(name = "clientes_id_seq", sequenceName = "clientes_id_seq")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +20,8 @@ public class Usuario implements Serializable {
 	private Integer pkUsuario;
 
 	private String email;
+
+	private Boolean entrou;
 
 	private String nome;
 
@@ -46,6 +48,14 @@ public class Usuario implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getEntrou() {
+		return this.entrou;
+	}
+
+	public void setEntrou(Boolean entrou) {
+		this.entrou = entrou;
 	}
 
 	public String getNome() {

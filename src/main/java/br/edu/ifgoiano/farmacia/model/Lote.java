@@ -20,10 +20,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * The persistent class for the lote database table.
+ * The persistent class for the lotes database table.
  * 
  */
 @Entity
+@Table(name = "lotes")
+@NamedQuery(name = "Lote.findAll", query = "SELECT l FROM Lote l")
 public class Lote implements Serializable {
 	private static final long serialVersionUID = 1L;
 

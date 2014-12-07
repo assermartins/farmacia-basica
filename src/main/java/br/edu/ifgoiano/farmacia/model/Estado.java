@@ -6,10 +6,11 @@ import java.util.List;
 
 
 /**
- * The persistent class for the estado database table.
+ * The persistent class for the estados database table.
  * 
  */
 @Entity
+@Table(name="estados")
 @NamedQuery(name="Estado.findAll", query="SELECT e FROM Estado e")
 public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,13 +19,6 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="pk_estado")
 	private Integer pkEstado;
-
-	@Column(name="codigo_uf")
-	private String codigoUf;
-
-	private String nome;
-
-	private String regiao;
 
 	private String uf;
 
@@ -41,30 +35,6 @@ public class Estado implements Serializable {
 
 	public void setPkEstado(Integer pkEstado) {
 		this.pkEstado = pkEstado;
-	}
-
-	public String getCodigoUf() {
-		return this.codigoUf;
-	}
-
-	public void setCodigoUf(String codigoUf) {
-		this.codigoUf = codigoUf;
-	}
-
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getRegiao() {
-		return this.regiao;
-	}
-
-	public void setRegiao(String regiao) {
-		this.regiao = regiao;
 	}
 
 	public String getUf() {

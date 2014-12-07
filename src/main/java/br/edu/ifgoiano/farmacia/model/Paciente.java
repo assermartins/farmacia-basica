@@ -7,10 +7,11 @@ import java.util.List;
 
 
 /**
- * The persistent class for the paciente database table.
+ * The persistent class for the pacientes database table.
  * 
  */
 @Entity
+@Table(name="pacientes")
 @NamedQuery(name="Paciente.findAll", query="SELECT p FROM Paciente p")
 public class Paciente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -60,9 +61,9 @@ public class Paciente implements Serializable {
 	@JoinColumn(name="pk_psf")
 	private Psf psf;
 
-	//bi-directional many-to-one association to SaidaMedicamento
+	//bi-directional many-to-one association to SaidasMedicamento
 	@OneToMany(mappedBy="paciente")
-	private List<SaidaMedicamento> saidaMedicamentos;
+	private List<SaidasMedicamento> saidasMedicamentos;
 
 	public Paciente() {
 	}
@@ -195,26 +196,26 @@ public class Paciente implements Serializable {
 		this.psf = psf;
 	}
 
-	public List<SaidaMedicamento> getSaidaMedicamentos() {
-		return this.saidaMedicamentos;
+	public List<SaidasMedicamento> getSaidasMedicamentos() {
+		return this.saidasMedicamentos;
 	}
 
-	public void setSaidaMedicamentos(List<SaidaMedicamento> saidaMedicamentos) {
-		this.saidaMedicamentos = saidaMedicamentos;
+	public void setSaidasMedicamentos(List<SaidasMedicamento> saidasMedicamentos) {
+		this.saidasMedicamentos = saidasMedicamentos;
 	}
 
-	public SaidaMedicamento addSaidaMedicamento(SaidaMedicamento saidaMedicamento) {
-		getSaidaMedicamentos().add(saidaMedicamento);
-		saidaMedicamento.setPaciente(this);
+	public SaidasMedicamento addSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
+		getSaidasMedicamentos().add(saidasMedicamento);
+		saidasMedicamento.setPaciente(this);
 
-		return saidaMedicamento;
+		return saidasMedicamento;
 	}
 
-	public SaidaMedicamento removeSaidaMedicamento(SaidaMedicamento saidaMedicamento) {
-		getSaidaMedicamentos().remove(saidaMedicamento);
-		saidaMedicamento.setPaciente(null);
+	public SaidasMedicamento removeSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
+		getSaidasMedicamentos().remove(saidasMedicamento);
+		saidasMedicamento.setPaciente(null);
 
-		return saidaMedicamento;
+		return saidasMedicamento;
 	}
 
 }

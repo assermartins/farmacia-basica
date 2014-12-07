@@ -6,10 +6,11 @@ import java.util.List;
 
 
 /**
- * The persistent class for the medico database table.
+ * The persistent class for the medicos database table.
  * 
  */
 @Entity
+@Table(name="medicos")
 @NamedQuery(name="Medico.findAll", query="SELECT m FROM Medico m")
 public class Medico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -25,9 +26,9 @@ public class Medico implements Serializable {
 
 	private String telefone;
 
-	//bi-directional many-to-one association to SaidaMedicamento
+	//bi-directional many-to-one association to SaidasMedicamento
 	@OneToMany(mappedBy="medico")
-	private List<SaidaMedicamento> saidaMedicamentos;
+	private List<SaidasMedicamento> saidasMedicamentos;
 
 	public Medico() {
 	}
@@ -64,26 +65,26 @@ public class Medico implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public List<SaidaMedicamento> getSaidaMedicamentos() {
-		return this.saidaMedicamentos;
+	public List<SaidasMedicamento> getSaidasMedicamentos() {
+		return this.saidasMedicamentos;
 	}
 
-	public void setSaidaMedicamentos(List<SaidaMedicamento> saidaMedicamentos) {
-		this.saidaMedicamentos = saidaMedicamentos;
+	public void setSaidasMedicamentos(List<SaidasMedicamento> saidasMedicamentos) {
+		this.saidasMedicamentos = saidasMedicamentos;
 	}
 
-	public SaidaMedicamento addSaidaMedicamento(SaidaMedicamento saidaMedicamento) {
-		getSaidaMedicamentos().add(saidaMedicamento);
-		saidaMedicamento.setMedico(this);
+	public SaidasMedicamento addSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
+		getSaidasMedicamentos().add(saidasMedicamento);
+		saidasMedicamento.setMedico(this);
 
-		return saidaMedicamento;
+		return saidasMedicamento;
 	}
 
-	public SaidaMedicamento removeSaidaMedicamento(SaidaMedicamento saidaMedicamento) {
-		getSaidaMedicamentos().remove(saidaMedicamento);
-		saidaMedicamento.setMedico(null);
+	public SaidasMedicamento removeSaidasMedicamento(SaidasMedicamento saidasMedicamento) {
+		getSaidasMedicamentos().remove(saidasMedicamento);
+		saidasMedicamento.setMedico(null);
 
-		return saidaMedicamento;
+		return saidasMedicamento;
 	}
 
 }

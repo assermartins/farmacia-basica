@@ -18,10 +18,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * The persistent class for the entrada_medicamento database table.
+ * The persistent class for the entradas_medicamentos database table.
  * 
  */
 @Entity
+@Table(name = "entradas_medicamentos")
+@NamedQuery(name = "EntradasMedicamento.findAll", query = "SELECT e FROM EntradasMedicamento e")
 public class EntradasMedicamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
